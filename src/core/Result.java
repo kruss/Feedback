@@ -9,25 +9,23 @@ public class Result {
 		UNDEFINED, WARNING, ERROR, SUCCEED
 	}
 	
-	public Status status;	
-	public String component;
+	public String name;
 	public String message;
-	
+	public Status status;	
 	public HashMap<String, String> properties;
 	public ArrayList<Result> results;
 	
-	public Result(String component, String message){
+	public Result(String name, String message){
 		
-		status = Status.UNDEFINED;
-		
-		this.component = component;
+		this.name = name;
 		this.message = message;
 		
+		status = Status.UNDEFINED;
 		properties = new HashMap<String, String>();
 		results = new ArrayList<Result>();
 	}
 	
 	public int getHashCode(){
-		return (status.toString()+component+message).hashCode();
+		return (name+message+status.toString()).hashCode();
 	}
 }

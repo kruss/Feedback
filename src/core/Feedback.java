@@ -10,7 +10,7 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 public class Feedback {
 
 	public static final String VERSION = "0.1.0";
-	public static final String OUTPUT_FILE = "result.xml";
+	public static final String OUTPUT_FILE = "feedback.xml";
 	
 	public String version;
 	public ArrayList<Result> results;
@@ -18,9 +18,18 @@ public class Feedback {
 	private transient XStream xstream;
 	
 	public Feedback(){
-		
-		version = VERSION;
-		results = new ArrayList<Result>();
+		initialize(
+				VERSION, 
+				new ArrayList<Result>()
+		);
+	}
+	
+	private void initialize(
+			String version, 
+			ArrayList<Result> results
+	){	
+		this.version = version;
+		this.results = results;
 		
 		xstream = new XStream(new DomDriver());
 		xstream.alias(Feedback.class.getSimpleName(), Feedback.class);
@@ -37,7 +46,9 @@ public class Feedback {
 
 		String xml = Tools.readFile(path);
 		Feedback feedback = (Feedback)xstream.fromXML(xml);
-		version = feedback.version;
-		results = feedback.results;
+		initialize(
+				feedback.version, 
+				feedback.results
+		);
 	}
 }

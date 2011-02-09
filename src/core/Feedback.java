@@ -10,7 +10,7 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 public class Feedback {
 
 	public static final String VERSION = "0.1.0";
-	public static final String OUTPUT_FILE = "feedback.xml";
+	public static final String OUTPUT_FILE = "result.xml";
 	
 	public String version;
 	public ArrayList<Result> results;

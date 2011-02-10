@@ -45,7 +45,9 @@ public class FeedbackTest {
 		ArrayList<Result> results = new ArrayList<Result>();
 		for(int i=0; i<count; i++){
 			Result result = new Result("Result-"+i);
-			result.message = "Message-"+i;
+			for(int j=0; j<i; j++){
+				result.messages.add("Message-"+j);
+			}
 			result.resolution = stati[count % stati.length];
 			for(int j=0; j<i; j++){
 				result.values.put("Key-"+j, "Value-"+j);

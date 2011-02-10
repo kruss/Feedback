@@ -10,7 +10,7 @@ import org.junit.Test;
 import util.Tools;
 import core.Feedback;
 import core.Result;
-import core.Result.Status;
+import core.Result.Resolution;
 
 public class FeedbackTest {
 
@@ -41,13 +41,13 @@ public class FeedbackTest {
 
 	private static ArrayList<Result> createTestResults(int count) {
 		
-		Status[] stati = Status.values();
+		Resolution[] stati = Resolution.values();
 		ArrayList<Result> results = new ArrayList<Result>();
 		for(int i=0; i<count; i++){
-			Result result = new Result("Comp-"+i, "message-"+1);
-			result.status = stati[count < stati.length ? count : 0];
+			Result result = new Result("Result-"+i, "Message-"+i);
+			result.resolution = stati[count % stati.length];
 			for(int j=0; j<i; j++){
-				result.properties.put("Prop-"+j, "Value-"+j);
+				result.values.put("Key-"+j, "Value-"+j);
 			}
 			result.results = createTestResults(count-1);
 			results.add(result);

@@ -5,14 +5,14 @@ import java.util.HashMap;
 
 public class Result {
 
-	public enum Status {
+	public enum Resolution {
 		UNDEFINED, WARNING, ERROR, SUCCEED
 	}
 	
 	public String name;
 	public String message;
-	public Status status;	
-	public HashMap<String, String> properties;
+	public Resolution resolution;	
+	public HashMap<String, String> values;
 	public ArrayList<Result> results;
 	
 	public Result(String name, String message){
@@ -20,12 +20,8 @@ public class Result {
 		this.name = name;
 		this.message = message;
 		
-		status = Status.UNDEFINED;
-		properties = new HashMap<String, String>();
+		resolution = Resolution.UNDEFINED;
+		values = new HashMap<String, String>();
 		results = new ArrayList<Result>();
-	}
-	
-	public int getHashCode(){
-		return (name+message+status.toString()).hashCode();
 	}
 }

@@ -15,11 +15,10 @@ public class Result {
 	public HashMap<String, String> values;
 	public ArrayList<Result> results;
 	
-	public Result(String name, String message){
+	public Result(String name){
 		
 		this.name = name;
-		this.message = message;
-		
+		message = "";
 		resolution = Resolution.UNDEFINED;
 		values = new HashMap<String, String>();
 		results = new ArrayList<Result>();

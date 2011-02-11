@@ -7,10 +7,6 @@ import java.io.FileWriter;
 
 public class Tools {
 	
-	public static String getWorkingDir(){
-		return System.getProperty("user.dir");
-	}
-	
 	public static void writeFile(String path, String string) throws Exception { 
 
 		int i=0; int c=0;

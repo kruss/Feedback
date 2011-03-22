@@ -1,6 +1,6 @@
 require 'rake/gempackagetask'
 
-GEM_NAME 	= "Feedback"
+GEM_NAME 	= "feedback"
 GEM_VERSION = "0.1.0"
 
 ### GEM ###################################################

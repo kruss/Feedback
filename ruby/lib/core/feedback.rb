@@ -15,9 +15,22 @@ class Feedback
   attr_accessor :results
   
   def serialize(path)
+    Tools.writeFile(path, toXml(0))
+  end
+  
+  def toXml(level)
     
-    xml = "test..."
-    Tools.writeFile(path, xml)
+     version = Tools.createTag("version", $VERSION, false, level+1)
+     
+     results = ""
+     @results.each do |result|
+       results += result.toXml(level+2)
+     end
+     results = Tools.createTag("results", results, true, level+1)
+     
+     xml = version+results
+     xml = Tools.createTag("Feedback", xml, true, level+0)
+     return xml
   end
 
 end

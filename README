@@ -1,3 +1,194 @@
 Feedback is a common result exchange format for different languages.
 
-More to come...
+e.g the following hierarchical results:
+
++ Result-0 - ERROR
+      + Result-0 - SUCCEED
+            + Result-0 - WARNING
+      + Result-1 - SUCCEED
+        - Key-0: Value-0
+        - Message-0
+            + Result-0 - WARNING
++ Result-1 - ERROR
+  - Key-0: Value-0
+  - Message-0
+      + Result-0 - SUCCEED
+            + Result-0 - WARNING
+      + Result-1 - SUCCEED
+        - Key-0: Value-0
+        - Message-0
+            + Result-0 - WARNING
++ Result-2 - ERROR
+  - Key-0: Value-0
+  - Key-1: Value-1
+  - Message-0
+  - Message-1
+      + Result-0 - SUCCEED
+            + Result-0 - WARNING
+      + Result-1 - SUCCEED
+        - Key-0: Value-0
+        - Message-0
+            + Result-0 - WARNING
+
+will be exchanged by the serialized xml-format:
+
+<Feedback>
+  <version>0.1.0</version>
+  <results>
+    <Result>
+      <name>Result-0</name>
+      <resolution>ERROR</resolution>
+      <messages/>
+      <values/>
+      <results>
+        <Result>
+          <name>Result-0</name>
+          <resolution>SUCCEED</resolution>
+          <messages/>
+          <values/>
+          <results>
+            <Result>
+              <name>Result-0</name>
+              <resolution>WARNING</resolution>
+              <messages/>
+              <values/>
+              <results/>
+            </Result>
+          </results>
+        </Result>
+        <Result>
+          <name>Result-1</name>
+          <resolution>SUCCEED</resolution>
+          <messages>
+            <string>Message-0</string>
+          </messages>
+          <values>
+            <entry>
+              <string>Key-0</string>
+              <string>Value-0</string>
+            </entry>
+          </values>
+          <results>
+            <Result>
+              <name>Result-0</name>
+              <resolution>WARNING</resolution>
+              <messages/>
+              <values/>
+              <results/>
+            </Result>
+          </results>
+        </Result>
+      </results>
+    </Result>
+    <Result>
+      <name>Result-1</name>
+      <resolution>ERROR</resolution>
+      <messages>
+        <string>Message-0</string>
+      </messages>
+      <values>
+        <entry>
+          <string>Key-0</string>
+          <string>Value-0</string>
+        </entry>
+      </values>
+      <results>
+        <Result>
+          <name>Result-0</name>
+          <resolution>SUCCEED</resolution>
+          <messages/>
+          <values/>
+          <results>
+            <Result>
+              <name>Result-0</name>
+              <resolution>WARNING</resolution>
+              <messages/>
+              <values/>
+              <results/>
+            </Result>
+          </results>
+        </Result>
+        <Result>
+          <name>Result-1</name>
+          <resolution>SUCCEED</resolution>
+          <messages>
+            <string>Message-0</string>
+          </messages>
+          <values>
+            <entry>
+              <string>Key-0</string>
+              <string>Value-0</string>
+            </entry>
+          </values>
+          <results>
+            <Result>
+              <name>Result-0</name>
+              <resolution>WARNING</resolution>
+              <messages/>
+              <values/>
+              <results/>
+            </Result>
+          </results>
+        </Result>
+      </results>
+    </Result>
+    <Result>
+      <name>Result-2</name>
+      <resolution>ERROR</resolution>
+      <messages>
+        <string>Message-0</string>
+        <string>Message-1</string>
+      </messages>
+      <values>
+        <entry>
+          <string>Key-0</string>
+          <string>Value-0</string>
+        </entry>
+        <entry>
+          <string>Key-1</string>
+          <string>Value-1</string>
+        </entry>
+      </values>
+      <results>
+        <Result>
+          <name>Result-0</name>
+          <resolution>SUCCEED</resolution>
+          <messages/>
+          <values/>
+          <results>
+            <Result>
+              <name>Result-0</name>
+              <resolution>WARNING</resolution>
+              <messages/>
+              <values/>
+              <results/>
+            </Result>
+          </results>
+        </Result>
+        <Result>
+          <name>Result-1</name>
+          <resolution>SUCCEED</resolution>
+          <messages>
+            <string>Message-0</string>
+          </messages>
+          <values>
+            <entry>
+              <string>Key-0</string>
+              <string>Value-0</string>
+            </entry>
+          </values>
+          <results>
+            <Result>
+              <name>Result-0</name>
+              <resolution>WARNING</resolution>
+              <messages/>
+              <values/>
+              <results/>
+            </Result>
+          </results>
+        </Result>
+      </results>
+    </Result>
+  </results>
+</Feedback>
+

@@ -51,4 +51,12 @@ public class Feedback {
 				feedback.results
 		);
 	}
+	
+	public int hashCode(){
+		int hash = version.hashCode();
+		for(Result result : results){
+			hash += result.hashCode();
+		}
+		return hash;
+	}
 }

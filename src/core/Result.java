@@ -23,4 +23,23 @@ public class Result {
 		values = new HashMap<String, String>();
 		results = new ArrayList<Result>();
 	}
+	
+	public int hashCode(){
+		int hash = name.hashCode();
+		hash += resolution.toString().hashCode();
+		for(String message : messages){
+			hash += message.hashCode();
+		}
+		for(String key : values.keySet()){
+			hash += key.hashCode();
+			String value = values.get(key);
+			if(value != null){
+				hash += value.hashCode();
+			}
+		}
+		for(Result result : results){
+			hash += result.hashCode();
+		}
+		return hash;
+	}
 }

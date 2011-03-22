@@ -1,7 +1,12 @@
-
+module Feedback
+  
 class Result
 
   @@Resolution = [ :UNDEFINED, :WARNING, :SUCCEED, :ERROR ]
+  
+  def self.RESOLUTION   
+    return @@Resolution   
+  end 
   
   def initialize(name)
     @name = name
@@ -10,10 +15,6 @@ class Result
     @values = {}
     @results = Array.new
   end
-  
-  def self.Resolution   
-    return @@Resolution   
-  end 
   
   attr_accessor :name
   attr_accessor :resolution
@@ -50,4 +51,6 @@ class Result
     xml = Tools.createTag("Result", xml, true, level+0)
     return xml
   end
+end
+
 end

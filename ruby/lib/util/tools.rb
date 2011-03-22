@@ -1,3 +1,4 @@
+module Feedback
 
 class Tools
   
@@ -30,4 +31,6 @@ class Tools
     end
   end
   
+end
+
 end

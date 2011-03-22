@@ -1,17 +1,26 @@
-
 require "rake"
-require "core/result"
+require "result"
 require "util/tools"
-  
-$VERSION = "0.1.0"
-$OUTPUT_FILE = "result.xml"
 
+module Feedback
+  
 class Feedback
 
+  @@Version = "0.1.0"
+  @@OutputFile = "result.xml"
+	
+  def self.VERSION   
+    return @@Version   
+  end 
+  
+  def self.OUTPUT_FILE   
+    return @@OutputFile   
+  end 
+  
 	def initialize()
     @results = Array.new
 	end
-	
+  
   attr_accessor :results
   
   def serialize(path)
@@ -20,7 +29,7 @@ class Feedback
   
   def toXml(level)
     
-     version = Tools.createTag("version", $VERSION, false, level+1)
+     version = Tools.createTag("version", @@Version, false, level+1)
      
      results = ""
      @results.each do |result|
@@ -32,5 +41,7 @@ class Feedback
      xml = Tools.createTag("Feedback", xml, true, level+0)
      return xml
   end
+
+end
 
 end

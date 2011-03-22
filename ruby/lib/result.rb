@@ -25,7 +25,7 @@ class Result
   def toXml(level)
     
     name = Tools.createTag("name", @name, false, level+1)
-    resolution = Tools.createTag("resolution", @resolution, false, level+1)
+    resolution = Tools.createTag("resolution", @resolution.to_s, false, level+1)
     
     messages = ""
     @messages.each do |message|

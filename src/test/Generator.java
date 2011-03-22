@@ -29,7 +29,7 @@ public class Generator {
 	
 	public static int generateRubyFeedback(String folderPath) throws Exception {
 		
-		String commandLine = "ruby "+folderPath+File.separator+"generate.rb";
+		String commandLine = "ruby "+folderPath+File.separator+"generator.rb";
 		ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/C", commandLine);
 		processBuilder.directory(new File(folderPath));
 		Process process = processBuilder.start();

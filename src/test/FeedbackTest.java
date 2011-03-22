@@ -35,7 +35,7 @@ public class FeedbackTest {
 	
 	@Test public void testRuby2JavaFeedback() {
 		
-		String generatorFolder = getWorkingDir()+File.separator+"ruby"+File.separator+"lib"+File.separator+"test";
+		String generatorFolder = getWorkingDir()+File.separator+"ruby"+File.separator+"gen";
 		String resultPath = generatorFolder+File.separator+Feedback.OUTPUT_FILE;
 		try{
 			assertEquals(PROCESS_OK, Generator.generateRubyFeedback(generatorFolder));

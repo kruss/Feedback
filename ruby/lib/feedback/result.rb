@@ -3,19 +3,19 @@ class Result
 
   @@Status = [ :UNDEFINED, :SUCCEED, :WARNING, :ERROR ]
   
-  def self.UNDEFINED_STATUS   
+  def self.STATUS_UNDEFINED
     return @@Status[0]   
   end 
   
-  def self.SUCCEED_STATUS   
+  def self.STATUS_SUCCEED
     return @@Status[1]   
   end 
 
-  def self.WARNING_STATUS   
+  def self.STATUS_WARNING 
     return @@Status[2]   
   end 
   
-  def self.ERROR_STATUS   
+  def self.STATUS_ERROR  
     return @@Status[3]   
   end 
   

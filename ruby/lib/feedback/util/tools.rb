@@ -1,4 +1,3 @@
-module Feedback
 
 class Tools
   
@@ -14,7 +13,7 @@ class Tools
   
   def Tools.createTag(name, content, newline, level)
     intend = ""
-    for i in 0..level-1 do
+    0.upto(level-1) do
       intend += "  "
     end
     if content.length == 0 then
@@ -31,6 +30,4 @@ class Tools
     end
   end
   
-end
-
 end

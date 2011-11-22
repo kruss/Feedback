@@ -1,32 +1,41 @@
 $:.unshift File.join(File.dirname(__FILE__), "..", "lib")
 
-require "feedback"
-
-module Feedback
+require "feedback/feedback"
 
 class Generator
-  def Generator.createTestResults(level)
+  
+  def Generator.generateResults(max)
+    return generateTestResults(1, max);
+  end
+  
+private
+
+  def Generator.generateTestResults(level, max)
     
     results = Array.new
-    for i in 0..level-1 do
-  
-      result = Result.new("Result-"+i.to_s);
-      for j in 0..i-1 do
-        result.messages << "Message-"+j.to_s;
+    for i in 1..level do
+      result = Result.new("Result-#{i}");
+      for j in 1..level do
+        result.values << "Message-#{j}"
+      end     
+      for j in 1..level do
+        result.properties["Key-#{j}"] = "Value-#{j}"
       end
-      result.resolution = Result.RESOLUTION[level % Result.RESOLUTION.length];
-      for j in 0..i-1 do
-        result.values["Key-"+j.to_s] = "Value-"+j.to_s
+      result.status = Result.STATUS[level % Result.STATUS.length];
+      if level < max then
+        result.results = Generator.generateTestResults(level+1, max);
       end
-      result.results = createTestResults(level-1);
       results << result;
     end
     return results;
   end
+  
 end
 
+if ARGV.length == 1 then
+  feedback = Feedback.new()
+  feedback.results = Generator.generateResults(ARGV[0].to_i);
+  feedback.serialize(Feedback.OUTPUT_FILE)
+else
+  raise "invalid args"
 end
-
-feedback = Feedback::Feedback.new()
-feedback.results = Feedback::Generator.createTestResults(3);
-feedback.serialize(Feedback::Feedback.OUTPUT_FILE)

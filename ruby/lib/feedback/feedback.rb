@@ -1,12 +1,10 @@
 require "rake"
-require "result"
-require "util/tools"
-
-module Feedback
+require "feedback/result"
+require "feedback/util/tools"
   
 class Feedback
 
-  @@Version = "0.1.0"
+  @@Version = "0.2.0"
   @@OutputFile = "result.xml"
 	
   def self.VERSION   
@@ -28,20 +26,17 @@ class Feedback
   end
   
   def toXml(level)
-    
-     version = Tools.createTag("version", @@Version, false, level+1)
+     version_tag = Tools.createTag("version", @@Version, false, level+1)
      
-     results = ""
+     results_tag = ""
      @results.each do |result|
-       results += result.toXml(level+2)
+       results_tag += result.toXml(level+2)
      end
-     results = Tools.createTag("results", results, true, level+1)
+     results_tag = Tools.createTag("results", results_tag, true, level+1)
      
-     xml = version+results
+     xml = version_tag+results_tag
      xml = Tools.createTag("Feedback", xml, true, level+0)
      return xml
   end
-
-end
 
 end

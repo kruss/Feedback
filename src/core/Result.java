@@ -5,38 +5,38 @@ import java.util.HashMap;
 
 public class Result {
 
-	public enum Resolution {
-		UNDEFINED, WARNING, SUCCEED, ERROR
+	public enum Status {
+		UNDEFINED, SUCCEED, WARNING, ERROR
 	}
 	
 	public String name;
-	public Resolution resolution;	
-	public ArrayList<String> messages;
-	public HashMap<String, String> values;
+	public ArrayList<String> values;
+	public HashMap<String, String> properties;
+	public Status status;	
 	public ArrayList<Result> results;
 	
 	public Result(String name){
 		
 		this.name = name;
-		resolution = Resolution.UNDEFINED;
-		messages = new ArrayList<String>();
-		values = new HashMap<String, String>();
+		values = new ArrayList<String>();
+		properties = new HashMap<String, String>();
+		status = Status.UNDEFINED;
 		results = new ArrayList<Result>();
 	}
 	
 	public int hashCode(){
 		int hash = name.hashCode();
-		hash += resolution.toString().hashCode();
-		for(String message : messages){
-			hash += message.hashCode();
+		for(String value : values){
+			hash += value.hashCode();
 		}
-		for(String key : values.keySet()){
+		for(String key : properties.keySet()){
 			hash += key.hashCode();
-			String value = values.get(key);
+			String value = properties.get(key);
 			if(value != null){
 				hash += value.hashCode();
 			}
 		}
+		hash += status.toString().hashCode();
 		for(Result result : results){
 			hash += result.hashCode();
 		}

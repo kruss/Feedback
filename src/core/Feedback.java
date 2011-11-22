@@ -7,9 +7,11 @@ import util.Tools;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+import core.Result.Status;
+
 public class Feedback {
 
-	public static final String VERSION = "0.1.0";
+	public static final String VERSION = "0.2.0";
 	public static final String OUTPUT_FILE = "result.xml";
 	
 	public String version;
@@ -58,5 +60,31 @@ public class Feedback {
 			hash += result.hashCode();
 		}
 		return hash;
+	}
+	
+	public String toString() {
+		StringBuilder string = new StringBuilder();
+		for(Result result : results){
+			string.append(result2String(result, ""));
+		}
+		return string.toString();
+	}
+
+	private String result2String(Result result, String intent) {
+		StringBuilder string = new StringBuilder();
+		string.append(intent+"+ "+result.name+(result.status != Status.UNDEFINED ? " ("+result.status+")" : "")+"\n");
+		for(String value : result.values){
+			string.append(intent+"  |- "+value+"\n");
+		}
+		for(String key : result.properties.keySet()){
+			String value = result.properties.get(key);
+			if(value != null){
+				string.append(intent+"  |~ "+key+": "+value+"\n");
+			}
+		}
+		for(Result child : result.results){
+			string.append(result2String(child, intent+"  "));
+		}
+		return string.toString();
 	}
 }

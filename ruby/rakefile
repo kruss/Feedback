@@ -1,7 +1,7 @@
 require 'rake/gempackagetask'
 
 GEM_NAME 	= "feedback"
-GEM_VERSION = "0.1.0"
+GEM_VERSION = "0.2.0"
 
 ### GEM ###################################################
 
@@ -11,7 +11,7 @@ spec = Gem::Specification.new do |s|
 	s.author = "Kevin russ"
 	s.email = "kruss@lear.com"
 	s.platform = Gem::Platform::RUBY
-	s.summary = "Feedback is a common result exchange format"
+	s.summary = "Common result exchange format"
 	s.files = FileList["{bin,tests,lib,docs}/**/*"].exclude("rdoc").to_a
 	s.require_path = "lib"
 	s.has_rdoc = false
